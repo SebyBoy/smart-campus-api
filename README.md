@@ -55,6 +55,80 @@ POST /api/v1/sensors/{sensorId}/readings
 
 
 
+
+# Sample curl Commands
+
+## Curl Command 1
+
+### Command:
+curl http://localhost:8088/api/v1/rooms
+
+### Purpose:
+Retrieves all rooms currently stored in the system.
+
+### Result:
+Returns a JSON array containing all room objects.
+
+
+
+## Curl Command 2
+
+### Command:
+curl -X POST http://localhost:8088/api/v1/rooms ^
+-H "Content-Type: application/json" ^
+-d "{\"id\":\"SCI-201\",\"name\":\"Science Seminar Room\",\"capacity\":60,\"sensorIds\":[]}"
+
+### Purpose:
+Creates a new room called SCI-201.
+
+### Result:
+Returns the created room in JSON format and adds it to the room list.
+
+
+
+## Curl Command 3
+
+### Command:
+curl http://localhost:8088/api/v1/sensors
+
+### Purpose:
+Retrieves all sensors currently registered in the system.
+
+### Result:
+Returns a JSON array containing all sensor objects.
+
+
+
+## Curl Command 4
+
+### Command:
+curl -X POST http://localhost:8088/api/v1/sensors ^
+-H "Content-Type: application/json" ^
+-d "{\"id\":\"TEMP-002\",\"type\":\"Temperature\",\"status\":\"ACTIVE\",\"currentValue\":20.0,\"roomId\":\"SCI-201\"}"
+
+### Purpose:
+Creates a new temperature sensor and links it to room SCI-201.
+
+### Result:
+Returns the created sensor in JSON format and stores the relationship with the room.
+
+
+
+## Curl Command 5
+
+### Command:
+curl -X DELETE http://localhost:8088/api/v1/rooms/SCI-201
+
+### Purpose:
+Deletes the room SCI-201 if no sensors are assigned to it.
+
+### Result:
+Returns 204 No Content if successful. If sensors are still assigned, returns 409 Conflict.
+
+
+
+
+
 ## Coursework Report Answers
 
 # Part 1: Service Architecture & Setup
